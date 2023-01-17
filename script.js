@@ -110,6 +110,7 @@ function collisionDetection() {
   }
 }
 
+// ranColor Method to select random hex color for ball
 function randColor() {
   return (
     `#${
