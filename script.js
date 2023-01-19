@@ -1,5 +1,8 @@
+// the game is rendered on the HTML <canvas> 
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
+
+// ball variables
 const ballRadius = 10;
 let x = canvas.width / 2;
 let y = canvas.height - 30;
@@ -7,12 +10,15 @@ let dx = 2;
 let dy = -2;
 let color = '#0095DD';
 
+// paddle variables
 const paddleHeight = 10;
 const paddleWidth = 75;
 let paddleX = (canvas.width - paddleWidth) / 2;
+// variable to allow user to control the paddle
 let rightPressed = false;
 let leftPressed = false;
 
+// brick variables
 const brickRowCount = 3;
 const brickColumnCount = 5;
 const brickWidth = 75;
@@ -21,6 +27,9 @@ const brickPadding = 10;
 const brickOffsetTop = 30;
 const brickOffsetLeft = 30;
 
+// We will hold all our bricks in a two-dimensional array
+// This will loop through the rows and columns and create the new bricks
+// also make them disappear on collision
 const bricks = [];
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];
@@ -29,6 +38,7 @@ for (let c = 0; c < brickColumnCount; c += 1) {
   }
 }
 
+// function to loop through all the bricks in the array and draw them on the screen
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c += 1) {
     for (let r = 0; r < brickRowCount; r += 1) {
@@ -47,6 +57,7 @@ function drawBricks() {
   }
 }
 
+// When the keydown event is fired on any of the keys on keyboard keyhandler methods will be executed
 function keyDownHandler({ key }) {
   if (key === 'Right' || key === 'ArrowRight') {
     rightPressed = true;
@@ -63,6 +74,7 @@ function keyUpHandler({ key }) {
   }
 }
 
+// update the paddle position based on the pointer coordinates
 function mouseMoveHandler({ clientX }) {
   const relativeX = clientX - canvas.offsetLeft;
   if (relativeX > 0 && relativeX < canvas.width) {
@@ -70,6 +82,7 @@ function mouseMoveHandler({ clientX }) {
   }
 }
 
+// Counting the score 
 let score = 0;
 function drawScore() {
   ctx.font = '16px Arial';
@@ -77,6 +90,7 @@ function drawScore() {
   ctx.fillText(`Score: ${score}`, 8, 20);
 }
 
+// Giving the player some lives
 let lives = 3;
 
 function drawLives() {
@@ -102,6 +116,7 @@ function collisionDetection() {
           score += 1;
           if (score === brickRowCount * brickColumnCount) {
             // eslint-disable-next-line no-alert
+            // Winning message
             alert('YOU WIN, CONGRATULATIONS!');
             document.location.reload();
           }
@@ -120,6 +135,7 @@ function randColor() {
   );
 }
 
+// Method to draw the ball
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -136,6 +152,7 @@ function drawBall() {
   ctx.closePath();
 }
 
+// method to draw the paddle
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
@@ -144,6 +161,7 @@ function drawPaddle() {
   ctx.closePath();
 }
 
+// Main method - Draw Loop
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBricks();
@@ -189,8 +207,10 @@ function draw() {
 }
 
 draw();
-
+// Destructring
 const addEventListener = document.addEventListener
+// event listeners for user control the paddle through keyboard
 addEventListener('keydown', keyDownHandler, false);
 addEventListener('keyup', keyUpHandler, false);
+// event listeners for user control the paddle through mouse
 addEventListener('mousemove', mouseMoveHandler, false);
