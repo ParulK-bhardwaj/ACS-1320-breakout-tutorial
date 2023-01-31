@@ -7,20 +7,17 @@ class Ball extends Sprite {
     this.radius = radius;
     this.dx = 2;
     this.dy = -2;
-  };
+  }
+  // Inherited from Sprite?????????????????
+  // moveBall() {
+  //   this.x += this.dx;
+  //   this.y += this.dy;
+  // }
 
-  moveBall() {
-    this.x += this.dx;
-    this.y += this.dy;
-  };
-
-  // Stretch Challenge - ranColor Method to select random hex color for ball
+  // Stretch Challenge - randColor Method to select random hex color for ball
   randColor() {
-    this.color =
-      `#${
-        (Math.floor(Math.random() * 0x1000000) + 0x1000000)
-          .toString(16).substring(1)}`;
-  };
+    this.color = `#${(Math.floor(Math.random() * 0x1000000) + 0x1000000).toString(16).substring(1)}`;
+  }
 
   render(ctx) { // Overrides the existing render method!
     ctx.beginPath();
