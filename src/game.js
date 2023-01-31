@@ -31,10 +31,6 @@ class Game {
     // At the start of the game, a player is given 3 lives
     this.lives = 3;
     this.livesDisplay = new Point(this.canvas.width - 65, 20, this.lives, 'Lives');
-
-    // call methods
-    this.eventSetup();
-    this.draw();
   }
 
   // When the keydown event is fired on any of the keys on keyboard

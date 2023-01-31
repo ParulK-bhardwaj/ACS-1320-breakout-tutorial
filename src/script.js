@@ -7,3 +7,7 @@ const ctx = canvas.getContext('2d');
 
 // instantiate Game
 const game = new Game(canvas, ctx);
+
+// call game methods
+game.eventSetup();
+game.draw();
