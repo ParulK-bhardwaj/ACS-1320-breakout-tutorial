@@ -8,11 +8,6 @@ class Ball extends Sprite {
     this.dx = 2;
     this.dy = -2;
   }
-  // Inherited from Sprite?????????????????
-  // moveBall() {
-  //   this.x += this.dx;
-  //   this.y += this.dy;
-  // }
 
   // Stretch Challenge - randColor Method to select random hex color for ball
   randColor() {
