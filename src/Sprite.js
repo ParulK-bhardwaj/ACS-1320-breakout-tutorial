@@ -1,7 +1,7 @@
 // A Sprite is a game object. TO create the rectangle on the screen
 
 class Sprite {
-  constructor(x = 0, y = 0, width = 100, height = 100, color = '#f00') {
+  constructor(x = 0, y = 0, width = 200, height = 200, color = '#f00') {
     this.x = x;
     this.y = y;
     this.width = width;

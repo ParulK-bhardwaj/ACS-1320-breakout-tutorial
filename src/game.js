@@ -66,7 +66,7 @@ class Game {
       for (let r = 0; r < this.bricksBlock.rows; r += 1) {
         const b = this.bricksBlock.bricks[c][r];
         // const { x: brickX, y: brickY, status } = b;
-        if (b.status === 1) {
+        if (b.status === true) {
           // Change the direction of the ball
           if (
             this.ball.x > b.x

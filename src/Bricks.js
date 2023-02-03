@@ -1,7 +1,7 @@
 import Brick from './Brick.js';
 
 class Bricks {
-  constructor(rows = 4, columns = 5) {
+  constructor(rows = 4, columns = 7) {
     this.rows = rows;
     this.columns = columns;
     this.brickWidth = 75;
@@ -21,7 +21,10 @@ class Bricks {
     for (let c = 0; c < this.columns; c += 1) {
       this.bricks[c] = [];
       for (let r = 0; r < this.rows; r += 1) {
-        this.bricks[c][r] = { x: 0, y: 0, status: 1 };
+        const brickX = c * (this.brickWidth + this.brickPadding) + this.brickOffsetLeft;
+        const brickY = r * (this.brickHeight + this.brickPadding) + this.brickOffsetTop;
+        const brick = new Brick(brickX, brickY);
+        this.bricks[c][r] = brick;
       }
     }
   }
@@ -30,12 +33,8 @@ class Bricks {
   render(ctx) {
     for (let c = 0; c < this.columns; c += 1) {
       for (let r = 0; r < this.rows; r += 1) {
-        if (this.bricks[c][r].status === 1) {
-          const brickX = c * (this.brickWidth + this.brickPadding) + this.brickOffsetLeft;
-          const brickY = r * (this.brickHeight + this.brickPadding) + this.brickOffsetTop;
-          this.bricks[c][r].x = brickX;
-          this.bricks[c][r].y = brickY;
-          const brick = new Brick(brickX, brickY);
+        if (this.bricks[c][r].status === true) {
+          const brick = this.bricks[c][r];
           brick.render(ctx);
         }
       }
